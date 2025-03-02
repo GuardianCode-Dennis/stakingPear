@@ -44,7 +44,7 @@
                     <div class="flex flex-col gap-2">
                         <span class="text-lg font-normal">The amount of staked pear tokens (<span class="font-bold">{formatCurrency(yourStakedPear)}</span>)</span>
                         <div class="flex gap-4 items-center flex-col md:flex-row">
-                            <input class="w-full md:max-w-[500px] h-2 bg-primary rounded-lg appearance-none cursor-pointer dark:bg-primary" type="range" bind:value={yourStakedPear} min="0" max={totalStakedPear} step="1">
+                            <input class="w-full md:max-w-[500px] h-2 bg-primary rounded-lg appearance-none cursor-pointer dark:bg-primary" type="range" bind:value={yourStakedPear} min="0" max="560000000" step="1">
                             <input class="border border-black/20 py-2 px-4 rounded-md w-full md:max-w-[200px]" bind:value={yourStakedPear} type="number" min="0" max={totalStakedPear} step="1">
                         </div>
                     </div>
