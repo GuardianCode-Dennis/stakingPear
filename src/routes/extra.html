@@ -1,0 +1,107 @@
+<script>
+    let yourStakedPear = 100000;
+    let totalStakedPear = 100000000;
+    let feesPercentage = 0.13;
+    let pearProtcolVolumePerDay = 10000000;
+    let feesForStaked = 0.80;
+
+    $: dailyDividend = (((pearProtcolVolumePerDay * (feesPercentage / 100)) * 0.80) / totalStakedPear) * yourStakedPear;
+    $: monthlyDividend = dailyDividend * 30;
+    $: yearlyDividend = dailyDividend * 365;
+    $: yourPercentageOfStakedPear = yourStakedPear / totalStakedPear * 100;
+
+    // Function to format currency with 2 decimals
+    function formatCurrency(value) {
+        return `$${value.toFixed(2)}`;
+    }
+
+    // Function to format percentage with 2 decimals
+    function formatPercentage(value, decimals = 2) {
+        return `${value.toFixed(decimals)}%`;
+    }
+</script>
+
+<div class="text-red-200">dwadaw</div>
+
+<div class="flex">
+    <div>
+        <input type="range" bind:value={yourStakedPear} min="0" max={totalStakedPear} step="1">
+    </div>
+    <label>
+        <span>The amount of staked pear tokens</span>
+        <input bind:value={yourStakedPear} type="number" min="0" max={totalStakedPear} step="1">
+    </label>
+    <div>
+        <input type="range" bind:value={totalStakedPear} min={yourStakedPear} max="560000000" step="1">
+    </div>
+    <label>
+        <span>The total amount of staked pear tokens (note: 44% will never hit circulation, and there for also not in the total amount of staked - max staked is 560.000.000)</span>
+        <input bind:value={totalStakedPear} type="number" min="0" max="560000000" step="1">
+    </label>
+    <div>
+        <input type="range" bind:value={feesPercentage} min="0.01" max="0.20" step="0.01">
+    </div>
+    <label>
+        <span>Fees percentage</span>
+        <input bind:value={feesPercentage} type="number" min="0" max="0.20" step="0.01">
+    </label>
+    <div>
+        <input type="range" bind:value={pearProtcolVolumePerDay} min="0" max="1000000000" step="100000">
+    </div>
+    <label>
+        <span>Pear Protcol Volume per day</span>
+        <input bind:value={pearProtcolVolumePerDay} type="number" min="0" step="1">
+    </label>
+</div>
+
+<div class="amount">
+    <div class="flex flex--extra">
+        <h3>Your percentage of staked pear</h3>
+        <span>{formatPercentage(yourPercentageOfStakedPear)}</span>
+    </div>
+    <div class="flex flex--extra">
+        <h3>Daily dividend</h3>
+        <span>{formatCurrency(dailyDividend)}</span>
+    </div>
+    <div class="flex flex--extra">
+        <h3>Montly dividend</h3>
+        <span>{formatCurrency(monthlyDividend)}</span>
+    </div>
+    <div class="flex flex--extra">
+        <h3>Yearly dividend</h3>
+        <span>{formatCurrency(yearlyDividend)}</span>
+    </div>
+</div>
+
+<style>
+    .amount {
+        padding: 24px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .flex {
+        padding: 24px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+    .flex--extra h3 {
+        margin: 0;
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        margin: 0 1rem;
+    }
+
+    input {
+        margin-top: 0.5rem;
+    }
+</style>

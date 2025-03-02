@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    --color-light-grey: #F8FAFB;
+    --color-bg-grey: #EFEEF3;
+    --color-primary: #6270EA;
+
+    /* Fonts */
+    --font-primary: "Lato", sans-serif;
+}
